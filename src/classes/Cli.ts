@@ -321,6 +321,11 @@ class Cli {
       });
   }
 
+  performAWheelie(vehicle:Truck | Car | Motorbike){
+    if(vehicle instanceof Motorbike){
+      vehicle.wheelie(vehicle);
+    }
+  }
   // method to perform actions on a vehicle
   performActions(): void {
     inquirer
@@ -416,17 +421,22 @@ class Cli {
                 this.findVehicleToTow(this.vehicles[i]);
               }
               else {
-                console.log("This is not a truck and is not allowed to tow. \n Select Another Action");
-                this.performActions();
+                console.log("This action can only be performed by a vehicle of type truck. \n Select Another Action");
               }
             }
           }
-          return;
         }
         // TODO: add statements to perform the wheelie action only if the selected vehicle is a motorbike
-        else if (answers.accelerate === 'Make a Donut Wheelie') {
-          if (answers.vehicleType === "motorbike") {
-            answers.vehicleType.wheelie();
+        else if (answers.action === 'Make a Donut Wheelie') {
+          for (let i = 0; i < this.vehicles.length; i++) {
+            if (this.vehicles[i].vin === this.selectedVehicleVin) {
+              if (this.vehicles[i] instanceof Motorbike) {
+                this.performAWheelie(this.vehicles[i]);
+              }
+              else {
+                console.log("This action can only be performed by a vehicle of type Motorbyke. \n Select Another Action");
+              }
+            }
           }
         }
         else if (answers.action === 'Select or create another vehicle') {
