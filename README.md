@@ -15,7 +15,8 @@ Using the CLI, the code prompts the user to input vehicle details and perform ac
 Clone the repository to your computer, initialize the npm using the command "npm init -y", <br>then install the packages from npm using the command "npm install"
 
 ## Usage: 
-After cloning the repository, and initializing the code; run the command "npm start" to begin the program <br> you can also follow the following video link to show you the steps it takes to fill up the form: <br> [!Demo-Video](https://watch.screencastify.com/v/neH62U4x0QkVz1nlEx2t)
+After cloning the repository, and initializing the code; run the command "npm start" to begin the program <br> you can also follow the following video link to show you the steps it takes to fill up the form: <br> [!Demo-Video]
+(https://drive.google.com/file/d/1Jjq50gvDTkrc4WjyRlMXAlgNbODCOxly/view)
 
 ## Licence: <br>
 ### MIT <br>
