@@ -304,7 +304,6 @@ class Cli {
         // TODO: if it is not, tow the selected vehicle then perform actions on the truck 
         // to allow the user to select another action
 
-        if (vehicle instanceof Truck) {
           const selectedVehicle = this.vehicles.find((vehicle) => {
             return answers.vehicleToTow.vin === vehicle.vin;
           });
@@ -314,10 +313,11 @@ class Cli {
             this.performActions();
           }
           else {
-            vehicle.tow(answers.vehicle);
-            this.performActions();
+            if(vehicle instanceof Truck){
+              vehicle.tow(answers.vehicleToTow);
+              this.performActions();
+            }
           }
-        }
       });
   }
 
@@ -345,7 +345,7 @@ class Cli {
             'Turn left',
             'Reverse',
             'Select or create another vehicle',
-            'Tow my Vehicle',
+            'Tow a Vehicle',
             'Make a Donut Wheelie',
             'Exit',
           ],
@@ -414,7 +414,7 @@ class Cli {
         // Call the findVehicleToTow method to find a vehicle to tow and pass the selected truck as an argument. 
         // After calling the findVehicleToTow method, you will need to return to avoid instantly calling 
         // the performActions method again since findVehicleToTow is asynchronous.
-        else if (answers.action === 'Tow my Vehicle') {
+        else if (answers.action === 'Tow a Vehicle') {
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].vin === this.selectedVehicleVin) {
               if (this.vehicles[i] instanceof Truck) {
@@ -422,7 +422,9 @@ class Cli {
               }
               else {
                 console.log("This action can only be performed by a vehicle of type truck. \n Select Another Action");
+                this.performActions();
               }
+              return;
             }
           }
         }
